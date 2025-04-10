@@ -3,7 +3,7 @@ import { fetchPost } from "./AsyncSlice";
 import { useEffect } from "react";
 const Fetcher=()=>{
     const dispatch=useDispatch();
-    const status=useSelector((state)=>state.post);
+    const {status,post}=useSelector((state)=>state.post);
     useEffect(()=>{
         dispatch(fetchPost())
     },[dispatch])
@@ -11,9 +11,9 @@ const Fetcher=()=>{
         <>
         {status==="Loading"&&<p>Loading</p>}
         {status==="Success"&&
-        status.map((state)=><div key={state.key}>{state.title}</div>)
+        post.map((post)=><div key={post.key}>{post.title}</div>)
         }
-        
+        {status==="rejected"&&<p>Rejected</p>}
         </>
     )
 }

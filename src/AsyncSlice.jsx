@@ -15,8 +15,9 @@ const postSlice=createSlice({
         .addCase(fetchPost.pending,(state)=>{
             state.status="Loading"
         })
-        .addCase(fetchPost.fulfilled,(state)=>{
+        .addCase(fetchPost.fulfilled,(state,action)=>{
             state.status="Success"
+            state.post=action.payload;
         })
         .addCase(fetchPost.rejected,(state)=>{
             state.status="rejected"
